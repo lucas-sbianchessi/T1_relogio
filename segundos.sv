@@ -1,5 +1,5 @@
 module segundos (
-  input  logic clk_1Hz,      // Clock de 1Hz
+  input  logic clk_i,      // Clock de 1Hz
   input  logic rstn_i,       // Reset assíncrono ativo baixo
   output logic inc_min_o,    // Sinal para incrementar minutos
   output logic [5:0] segundos // Contador de segundos
@@ -11,7 +11,7 @@ module segundos (
   // Atribuições dos sinais de saída
   assign segundos = segundos_reg;
   assign inc_min_o = inc_min_o_reg;
-  always_ff @(posedge clk_1Hz or negedge rstn_i) begin
+  always_ff @(posedge clk_i or negedge rstn_i) begin
    if (!rstn_i) begin
     // Reset assíncrono ativo baixo
     segundos_reg <= 6'b0;

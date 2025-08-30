@@ -1,0 +1,27 @@
+module testbench;
+    logic clk_100MHz;
+    logic rstn;
+    logic [5:0] segundos, minutos, horas;
+    
+    // Instância do relógio
+    relogio_top dut (
+        .clk_100MHz(clk_100MHz),
+        .rstn(rstn),
+        .segundos(segundos),
+        .minutos(minutos),
+        .horas(horas)
+    );
+    
+    // Geração de clock
+    always #5 clk_100MHz = ~clk_100MHz;
+    
+    // Teste
+    initial begin
+        clk_100MHz = 0;
+        rstn = 0;
+        #10000 rstn = 1;
+        
+        // Simula por algum tempo
+        #1000000000 $finish;
+    end
+endmodule

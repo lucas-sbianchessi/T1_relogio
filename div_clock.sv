@@ -18,5 +18,4 @@ module clock_divider (
             end
         end
     end
-
 endmodule

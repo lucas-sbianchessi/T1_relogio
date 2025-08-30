@@ -1,24 +1,25 @@
-TOP = top_tb
+TOP = relogio_top_tb
 
 VERILOG_BASE = .
 
 VERILOG_SRC = \
-	$(VERILOG_BASE)/debounce.v \
-	$(VERILOG_BASE)/counter.v \
-	$(VERILOG_BASE)/dspl_drv_NexysA7.v \
-	$(VERILOG_BASE)/top.v \
-	$(VERILOG_BASE)/top_tb.v
+	$(VERILOG_BASE)/div_clock.sv \
+	$(VERILOG_BASE)/segundos.sv \
+	$(VERILOG_BASE)/minutos.sv \
+	$(VERILOG_BASE)/horas.sv \
+	$(VERILOG_BASE)/contadores_top.sv \
+	$(VERILOG_BASE)/contadores_tb.sv
 	
-TIME = 1ms
+TIME = 10ms
 
-all:
+all: modelsim-top
 
 # Command line simulation using ModelSim
 # run simulation with 'make modelsim-top TIME=10ms' to run for 10ms
 modelsim:
 	vlib mylib
 	vmap work ./mylib
-	vlog -work mylib $(VERILOG_SRC)
+	vlog -work mylib -sv $(VERILOG_SRC)
 
 modelsim-top: modelsim
 	vsim $(GUI) mylib.$(TOP) -voptargs=+acc -c -do "vcd file ${TOP}.vcd -compress; vcd add /*; run ${TIME}; quit"
@@ -28,14 +29,13 @@ modelsim-all: modelsim
 
 modelsim-wave: modelsim
 	vsim $(GUI) mylib.$(TOP) -voptargs=+acc -do "add wave -r /*; run ${TIME};"
-	
 
 # Command line simulation using Icarus Verilog 
 iverilog:
-	iverilog -g2005-sv $(VERILOG_SRC)
+	iverilog -g2012 -s $(TOP) $(VERILOG_SRC) -o $(TOP)
 	
 iverilog-vcd: iverilog
-	vvp a.out -lxt
+	vvp $(TOP) -lxt2
 
 # Display waveforms
 wave-vcd:
