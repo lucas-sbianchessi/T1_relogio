@@ -1,8 +1,10 @@
-module clock_divider (
+module clock_divider_fixed (
     input  logic clk_100MHz,
     input  logic rstn,
     output logic clk_out
 );
+
+    // Contador de 27 bits (suficiente para contar até 50.000.000)
     logic [26:0] counter;
 
     always_ff @(posedge clk_100MHz or negedge rstn) begin
@@ -18,4 +20,5 @@ module clock_divider (
             end
         end
     end
+
 endmodule

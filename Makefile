@@ -1,21 +1,26 @@
-TOP = relogio_top_tb
+TOP = relogio_top_debounced_tb
 
 VERILOG_BASE = .
 
 VERILOG_SRC = \
-	$(VERILOG_BASE)/div_clock.sv \
-	$(VERILOG_BASE)/segundos.sv \
-	$(VERILOG_BASE)/minutos.sv \
-	$(VERILOG_BASE)/horas.sv \
-	$(VERILOG_BASE)/contadores_top.sv \
-	$(VERILOG_BASE)/contadores_tb.sv
-	
+    $(VERILOG_BASE)/clock_divider_fixed.sv \
+    $(VERILOG_BASE)/bin_to_bcd.sv \
+    $(VERILOG_BASE)/relogio_com_pause.sv \
+    $(VERILOG_BASE)/ajuste_controller.sv \
+    $(VERILOG_BASE)/blink_500ms.sv \
+    $(VERILOG_BASE)/debounce.v \
+    $(VERILOG_BASE)/edge_detector.sv \
+    $(VERILOG_BASE)/relogio_top_ajuste.sv \
+    $(VERILOG_BASE)/relogio_top_debounced.sv \
+    $(VERILOG_BASE)/relogio_display_ajuste.sv \
+    $(VERILOG_BASE)/dspl_drv_NexysA7.v \
+    $(VERILOG_BASE)/relogio_top_debounced_tb.sv
+    
 TIME = 10ms
 
 all: modelsim-top
 
 # Command line simulation using ModelSim
-# run simulation with 'make modelsim-top TIME=10ms' to run for 10ms
 modelsim:
 	vlib mylib
 	vmap work ./mylib
