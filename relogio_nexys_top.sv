@@ -5,8 +5,7 @@ module relogio_nexys_top (
     input logic btn_inc_raw,
     input logic btn_dec_raw,
     output logic [7:0] an,
-    output logic [7:0] dec_ddp,
-    output logic [7:0] leds
+    output logic [7:0] dec_ddp
 );
 
     // Sinais internos
@@ -35,8 +34,7 @@ module relogio_nexys_top (
         .horas(horas),
         .modo_ajuste(modo_ajuste),
         .an(an),
-        .dec_ddp(dec_ddp),
-        .leds(leds)
+        .dec_ddp(dec_ddp)
     );
 
 endmodule

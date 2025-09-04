@@ -60,9 +60,9 @@ module ajuste_controller (
         next_estado = estado;
         case (estado)
             NORMAL: if (mode_rising) next_estado = AJUSTE_SEG;
-            AJUSTE_SEG: if (mode_rising) next_estado = AJUSTE_MIN;
-            AJUSTE_MIN: if (mode_rising) next_estado = AJUSTE_HORA;
-            AJUSTE_HORA: if (mode_rising) next_estado = NORMAL;
+            AJUSTE_SEG: if (mode_rising) next_estado = AJUSTE_HORA;
+            AJUSTE_MIN: if (mode_rising) next_estado = NORMAL;
+            AJUSTE_HORA: if (mode_rising) next_estado = AJUSTE_MIN;
         endcase
     end
     
@@ -97,7 +97,7 @@ module ajuste_controller (
     
     // Sinais de controle
     assign pause = (estado != NORMAL);
-    assign load = (estado == AJUSTE_HORA && next_estado == NORMAL);
+    assign load = (estado == AJUSTE_MIN && next_estado == NORMAL);
     assign modo_ajuste = estado;
 
 endmodule

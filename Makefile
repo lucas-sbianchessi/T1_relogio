@@ -13,6 +13,8 @@ VERILOG_SRC = \
     $(VERILOG_BASE)/relogio_top_ajuste.sv \
     $(VERILOG_BASE)/relogio_top_debounced.sv \
     $(VERILOG_BASE)/relogio_display_ajuste.sv \
+    $(VERILOG_BASE)/relogio_nexys_top.sv \
+    $(VERILOG_BASE)/relogio_display_final.sv \
     $(VERILOG_BASE)/dspl_drv_NexysA7.v \
     $(VERILOG_BASE)/relogio_top_debounced_tb.sv
     
