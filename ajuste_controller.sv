@@ -86,7 +86,7 @@ module ajuste_controller (
                     endcase
                 end else if (dec_rising) begin
                     case (estado)
-                        AJUSTE_SEG: segundos_out <= (segundos_out == 0) ? 59 : segundos_out - 1;
+                        AJUSTE_SEG: segundos_out <= (segundos_out == 1) ? 59 : segundos_out - 1;
                         AJUSTE_MIN: minutos_out <= (minutos_out == 0) ? 59 : minutos_out - 1;
                         AJUSTE_HORA: horas_out <= (horas_out == 0) ? 23 : horas_out - 1;
                     endcase
